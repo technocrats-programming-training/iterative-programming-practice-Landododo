@@ -7,7 +7,6 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
  * each mode, as described in the TimedRobot documentation. If you change the name of this class or
@@ -15,14 +14,19 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * project.
  */
 public class Robot extends TimedRobot {
-
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
    */
+  int timesCalled=0;
+  int autoCall=0;
+  int thisautoCall=0;
+  int teleCall=0;
+  int thisteleCall=0;
   @Override
-  public void robotInit() {}
-
+  public void robotInit() {
+    System.out.println("Robot Has Initialized");
+  }
   /**
    * This function is called every robot packet, no matter the mode. Use this for items like
    * diagnostics that you want ran during disabled, autonomous, teleoperated and test.
@@ -31,8 +35,10 @@ public class Robot extends TimedRobot {
    * SmartDashboard integrated updating.
    */
   @Override
-  public void robotPeriodic() {}
-
+  public void robotPeriodic() {
+    timesCalled+=1;
+    System.out.println(timesCalled);
+  }
   /**
    * This autonomous (along with the chooser code above) shows how to select between different
    * autonomous modes using the dashboard. The sendable chooser code works with the Java
@@ -44,19 +50,31 @@ public class Robot extends TimedRobot {
    * chooser code above as well.
    */
   @Override
-  public void autonomousInit() {}
-
+  public void autonomousInit() {
+    System.out.println("Starting Autonomous");
+    autoCall+=1;
+    thisautoCall=0;
+  }
+  
   /** This function is called periodically during autonomous. */
   @Override
-  public void autonomousPeriodic() {}
-
+  public void autonomousPeriodic() {
   /** This function is called once when teleop is enabled. */
+    thisautoCall+=1;
+    System.out.println(autoCall+","+thisautoCall);
+  }
   @Override
-  public void teleopInit() {}
-
+  public void teleopInit() {
+    System.out.println("Starting Teleop");
+    teleCall+=1;
+    thisteleCall=0;
+  }
   /** This function is called periodically during operator control. */
   @Override
-  public void teleopPeriodic() {}
+  public void teleopPeriodic() {
+    thisteleCall+=1;
+    System.out.println(teleCall+","+thisteleCall);
+  }
 
   /** This function is called once when the robot is disabled. */
   @Override
